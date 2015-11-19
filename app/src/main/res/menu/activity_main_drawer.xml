@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/option1"
+        android:title="Login" />
+    <item android:id="@+id/option2"
+        android:title="News Feed" />
+    <item android:id="@+id/option3"
+        android:title="Check Rules" />
+    <item android:id="@+id/option4"
+        android:title="About Us" />
+
+</menu>
