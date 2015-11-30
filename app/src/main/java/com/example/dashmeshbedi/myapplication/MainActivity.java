@@ -1,9 +1,11 @@
 package com.example.dashmeshbedi.myapplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ViewFlipper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,8 +26,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
+        ViewFlipper flipper = (ViewFlipper) findViewById(R.id.flipper1);
+        flipper.startFlipping();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -84,11 +87,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.option3) {
 
-            //   startActivity(new Intent(MainActivity.this,Session1.class));
+               startActivity(new Intent(MainActivity.this,Rules.class));
 
         } else if (id == R.id.option4) {
 
-            //   startActivity(new Intent(MainActivity.this, Session1.class));
+              startActivity(new Intent(MainActivity.this, AboutUs.class));
 
         }
 
@@ -96,4 +99,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

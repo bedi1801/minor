@@ -8,6 +8,8 @@
             android:title="My Dream Team" />
         <item android:id="@+id/checkpoint"
             android:title="Check Your Points" />
+        <item android:id="@+id/teams"
+            android:title="All Teams" />
         <item android:id="@+id/logout"
             android:title="Log Out" />
     </group>

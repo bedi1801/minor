@@ -24,6 +24,7 @@ public class NewsFeed extends AppCompatActivity {
         setContentView(R.layout.activity_newsfeed);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Set reference to this activity
         local = this;
@@ -72,5 +73,10 @@ public class NewsFeed extends AppCompatActivity {
             // Set list view item click listener
             itcItems.setOnItemClickListener(new ListListener(result, local));
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
     }
 }
