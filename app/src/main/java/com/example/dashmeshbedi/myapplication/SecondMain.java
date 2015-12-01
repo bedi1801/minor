@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,16 +15,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.logging.Logger;
+
 public class SecondMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    public String userid1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        userid1 = extras.getString("Name");
         setContentView(R.layout.activity_second_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        Log.d("name",userid1);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

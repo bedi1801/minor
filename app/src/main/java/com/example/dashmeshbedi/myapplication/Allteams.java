@@ -93,8 +93,10 @@ public class Allteams extends AppCompatActivity {
 String url;
                   switch(position)
                   {
-                      case 0:url="http://api.football-data.org/alpha/teams/66/players";
-                          Log.d("Case0", "MANU");
+                     case 0:url="http://api.football-data.org/alpha/teams/66/players";
+                      // case 0:url="http://api.football-data.org/alpha/soccerseasons/398/teams";
+
+                      Log.d("Case0", "MANU");
 
                           Intent intent1=new Intent(Allteams.this,Players.class);
                           intent1.putExtra("url", url);
@@ -102,7 +104,7 @@ String url;
                           break;
 
                       case 1:url="http://api.football-data.org/alpha/teams/65/players";
-                          Log.d("Caseq","MANC");
+                          Log.d("Case1","MANC");
 
                           Intent intent2=new Intent(Allteams.this,Players.class);
                           intent2.putExtra("url", url);

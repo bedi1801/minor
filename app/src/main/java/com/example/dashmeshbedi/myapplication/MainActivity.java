@@ -82,14 +82,19 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.option2) {
 
-            startActivity(new Intent(MainActivity.this,NewsFeed.class));
+            startActivity(new Intent(MainActivity.this, NewsFeed.class));
+
+        }
+            else if (id == R.id.option3) {
+
+                startActivity(new Intent(MainActivity.this,Table.class));
 
 
-        } else if (id == R.id.option3) {
+            } else if (id == R.id.option4) {
 
                startActivity(new Intent(MainActivity.this,Rules.class));
 
-        } else if (id == R.id.option4) {
+        } else if (id == R.id.option5) {
 
               startActivity(new Intent(MainActivity.this, AboutUs.class));
 

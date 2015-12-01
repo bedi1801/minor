@@ -30,8 +30,9 @@
     <string name="title_activity_my_details">MyDetails</string>
     <string name="title_activity_news_feed">NewsFeed</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_allteams">Allteams</string>
     <string name="title_activity_players">Players</string>
+    <string name="title_activity_table">Table</string>
 </resources>
