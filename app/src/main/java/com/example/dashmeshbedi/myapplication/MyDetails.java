@@ -1,5 +1,6 @@
 package com.example.dashmeshbedi.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,112 +33,117 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MyDetails extends AppCompatActivity {
-
-    private String jsonResult;
-    private String url = "http:///login.php"; //TO BE CHANGED
+    public String userid2;
+    String email1,name1,dob1,mobile1,ques1,ans1,dream1,coins1,lock1,ponitsweek1,pointslead1;
     private ListView listView;
+    ConnectionClass connectionClass;
+    private TextView name , ema;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("sanku","isha");
+        Bundle extras = getIntent().getExtras();
+        userid2 = extras.getString("Name");
         setContentView(R.layout.activity_my_details);
         listView = (ListView) findViewById(R.id.listView1);
-        accessWebService();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        connectionClass = new ConnectionClass();
+        name = (TextView) findViewById(R.id.name);
+        ema = (TextView) findViewById(R.id.email);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Log.d("name", userid2);
+
+        Details details = new Details();
+        details.execute("");
+
 
     }
 
-    private class JsonReadTask extends AsyncTask<String, Void, String> {
+    public class Details extends AsyncTask<String,String,String>
+    {
+        String z = "";
+        Boolean isSuccess = false;
+        //String name = name.getText().toString();
+        //String email = email.getText().toString();
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected void onPostExecute(String r) {
+            Toast.makeText(MyDetails.this,r,Toast.LENGTH_SHORT).show();
+            if(isSuccess) {
+
+                Log.d("on post execute email", email1);
+               // TextView ema = (TextView) findViewById(R.id.email);
+               // ema.setText(email1);
+            finish();
+            }
+        }
         @Override
         protected String doInBackground(String... params) {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost(params[0]);
-            try {
-                HttpResponse response = httpclient.execute(httppost);
-                jsonResult = inputStreamToString(
-                        response.getEntity().getContent()).toString();
-            }
 
-            catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
+                try {
+                    Connection con = connectionClass.CONN();
+                    if (con == null) {
+                        z = "Error in connection with SQL server";
+                    } else {
+                        String query = "select * from User_Detail where Name='" + userid2 +"'" ;
+                        Statement stmt = con.createStatement();
+                        ResultSet rs = stmt.executeQuery(query);
+                        while(rs.next()) {
 
-        private StringBuilder inputStreamToString(InputStream is) {
-            String rLine = "";
-            StringBuilder answer = new StringBuilder();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                            email1 = rs.getString("Email_Id");
+                            name1 = rs.getString("Name");
+                            mobile1 = rs.getString("Mobile_no");
+                            ques1 = rs.getString("Security_question");
+                            ans1 = rs.getString("Security_answer");
+                            dob1 = rs.getString("Date_of_birth");
+                            dream1 = rs.getString("Dream_Team");
+                            ponitsweek1 = rs.getString("Points_Week");
+                            pointslead1 = rs.getString("Points_LeaderBoard");
+                            lock1 = rs.getString("Lock_Status");
+                            coins1 = rs.getString("Coins");
+                            Log.d("email1",email1);
+                            Log.d("Coins",coins1);
+                            isSuccess = true;
+                        }
 
-            try {
-                while ((rLine = rd.readLine()) != null) {
-                    answer.append(rLine);
+                        this.publishProgress(email1);
+                    }
                 }
-            }
+                catch (Exception ex)
+                {
+                    isSuccess = false;
+                    z = "Exceptions";
+                }
 
-            catch (IOException e) {
-                // e.printStackTrace();
-                Toast.makeText(getApplicationContext(),
-                        "Error..." + e.toString(), Toast.LENGTH_LONG).show();
+            return "Done";
             }
-            return answer;
-        }
-
         @Override
-        protected void onPostExecute(String result) {
-            ListDrwaer();
-        }
-    }// end async task
+        protected void onProgressUpdate(String... values)
+        {
+            super.onProgressUpdate(values);
+            Log.d("On progress Update before text view ",email1);
+            TextView ema = (TextView) findViewById(R.id.email);
+            Log.d("On progress Update after text view ",email1);
+           // ema.setText(values[0]);
 
-    public void accessWebService() {
-        JsonReadTask task = new JsonReadTask();
-        // passes values for the urls string array
-        task.execute(new String[] { url });
-    }
-
-    // build hash set for list view
-    public void ListDrwaer() {
-        List<Map<String, String>> employeeList = new ArrayList<Map<String, String>>();
-
-        try {
-            JSONObject jsonResponse = new JSONObject(jsonResult);
-            JSONArray jsonMainNode = jsonResponse.optJSONArray("login");
-
-            for (int i = 0; i < jsonMainNode.length(); i++) {
-                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-                String name = jsonChildNode.optString("Username");
-                String pass = jsonChildNode.optString("Password");
-               String outPut = name + "-" + pass;
-                employeeList.add(createEmployee("employees", outPut));
-            }
-        } catch (JSONException e) {
-            Toast.makeText(getApplicationContext(), "Error" + e.toString(),
-                    Toast.LENGTH_SHORT).show();
         }
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(this, employeeList,
-                android.R.layout.simple_list_item_1,
-                new String[] { "employees" }, new int[] { android.R.id.text1 });
-        listView.setAdapter(simpleAdapter);
-    }
 
-    private HashMap<String, String> createEmployee(String name, String pass) {
-        HashMap<String, String> employeeNameNo = new HashMap<String, String>();
-        employeeNameNo.put(name, pass);
-        return employeeNameNo;
-    }
-}
 
+        }
+    }
 
 
 

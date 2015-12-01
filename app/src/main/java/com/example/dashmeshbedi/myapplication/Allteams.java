@@ -40,6 +40,7 @@ public class Allteams extends AppCompatActivity {
         list1 = new ArrayList<HashMap<String, String>>();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //new JSONParse().execute();
 

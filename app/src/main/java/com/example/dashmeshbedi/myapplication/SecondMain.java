@@ -25,6 +25,7 @@ public class SecondMain extends AppCompatActivity
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
         userid1 = extras.getString("Name");
+
         setContentView(R.layout.activity_second_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,7 +82,9 @@ public class SecondMain extends AppCompatActivity
 
         if (id == R.id.mydetails) {
 
-            startActivity(new Intent(SecondMain.this,MyDetails.class));
+            Intent inten=new Intent(SecondMain.this,MyDetails.class);
+            inten.putExtra("Name",userid1);
+            startActivity(inten);
 
         } else if (id == R.id.mydreamteam) {
 

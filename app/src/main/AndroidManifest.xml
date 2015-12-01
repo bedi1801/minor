@@ -76,27 +76,21 @@
             android:label="@string/title_activity_allteams"
             android:parentActivityName=".SecondMain"
             android:theme="@style/AppTheme.ActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dashmeshbedi.myapplication.SecondMain" />
+
         </activity>
         <activity
             android:name=".Players"
             android:label="@string/title_activity_players"
             android:parentActivityName=".Allteams"
             android:theme="@style/AppTheme.ActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dashmeshbedi.myapplication.Allteams" />
+
         </activity>
         <activity
             android:name=".Table"
             android:label="@string/title_activity_table"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.ActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.dashmeshbedi.myapplication.MainActivity" />
+
         </activity>
     </application>
 
