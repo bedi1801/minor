@@ -37,12 +37,12 @@
         <activity
             android:name=".NewsFeed"
             android:label="News Feed"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SecondMain"
             android:label="SecondMain"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ThirdMain"
             android:label="Sign Up"
@@ -65,32 +65,35 @@
             android:name=".Rules"
             android:label="Game Rules"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.ActionBar"></activity>
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".AboutUs"
             android:label="About Us"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.ActionBar"></activity>
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Allteams"
             android:label="@string/title_activity_allteams"
             android:parentActivityName=".SecondMain"
-            android:theme="@style/AppTheme.ActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.ActionBar"></activity>
         <activity
             android:name=".Players"
             android:label="@string/title_activity_players"
             android:parentActivityName=".Allteams"
-            android:theme="@style/AppTheme.ActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.ActionBar"></activity>
         <activity
             android:name=".Table"
             android:label="@string/title_activity_table"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.ActionBar">
-
+            android:theme="@style/AppTheme.ActionBar"></activity>
+        <activity
+            android:name=".Fixtures"
+            android:label="@string/title_activity_fixtures"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dashmeshbedi.myapplication.MainActivity" />
         </activity>
     </application>
 

@@ -10,6 +10,16 @@
             android:title="Check Your Points" />
         <item android:id="@+id/teams"
             android:title="All Teams" />
+        <item android:id="@+id/news"
+            android:title="News Feed" />
+        <item android:id="@+id/fixtures"
+            android:title="Fixtures" />
+        <item android:id="@+id/leaguet"
+            android:title="League Table" />
+        <item android:id="@+id/rules"
+            android:title="Rules" />
+        <item android:id="@+id/about"
+            android:title="About Us" />
         <item android:id="@+id/logout"
             android:title="Log Out" />
     </group>

@@ -27,7 +27,10 @@ public class AboutUs extends AppCompatActivity {
         // actionBar.setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     public boolean onSupportNavigateUp(){
@@ -42,5 +45,15 @@ public class AboutUs extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.about, menu);
         return true;
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                //this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

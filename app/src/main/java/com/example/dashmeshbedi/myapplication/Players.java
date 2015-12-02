@@ -57,7 +57,10 @@ public class Players extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         new JSONParse().execute();
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
     //String url = "http://api.football-data.org/alpha/teams/66/players";
 
 
@@ -92,9 +95,9 @@ public class Players extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            uid = (TextView) findViewById(R.id.is);
-            name1 = (TextView) findViewById(R.id.name);
-            pos1 = (TextView) findViewById(R.id.position);
+//            uid = (TextView) findViewById(R.id.is);
+ //           name1 = (TextView) findViewById(R.id.name);
+ //           pos1 = (TextView) findViewById(R.id.position);
             pDialog = new ProgressDialog(Players.this);
             pDialog.setMessage("Getting Data ...");
             pDialog.setIndeterminate(false);
@@ -120,7 +123,6 @@ public class Players extends AppCompatActivity {
                 // Getting JSON Array
                 user = json.getJSONArray(TAG_PLAYERS);
                 //JSONObject c = user.getJSONObject(0);
-                ArrayList<String> items = new ArrayList<String>();
                 for (int i = 0; i < user.length(); i++) {
                     JSONObject c = user.getJSONObject(i);
                     String id = c.getString(TAG_ID);

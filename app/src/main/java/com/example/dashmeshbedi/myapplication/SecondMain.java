@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.logging.Logger;
 
@@ -48,9 +49,13 @@ public class SecondMain extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+          //  super.onBackPressed();
+            Toast.makeText(SecondMain.this, "Back button disabled \n Please logout !!!!!!", Toast.LENGTH_SHORT).show();
+
+            //moveTaskToBack(true);
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,11 +96,34 @@ public class SecondMain extends AppCompatActivity
         } else if (id == R.id.checkpoint) {
 
         }else if (id == R.id.teams) {
-            startActivity(new Intent(SecondMain.this,Allteams.class));
+            startActivity(new Intent(SecondMain.this, Allteams.class));
 
         }
 
+        else if (id == R.id.fixtures) {
+            startActivity(new Intent(SecondMain.this, Fixtures.class));
+
+        }
+        else if (id == R.id.leaguet) {
+            startActivity(new Intent(SecondMain.this, Table.class));
+
+        }
+        else if (id == R.id.news) {
+            startActivity(new Intent(SecondMain.this, NewsFeed.class));
+
+        }
+        else if (id == R.id.rules) {
+            startActivity(new Intent(SecondMain.this, Rules.class));
+
+        }
+        else if (id == R.id.about) {
+            startActivity(new Intent(SecondMain.this, AboutUs.class));
+
+        }
         else if (id == R.id.logout) {
+            startActivity(new Intent(SecondMain.this,MainActivity.class));
+            Toast.makeText(SecondMain.this, "logout successful!!!!!!", Toast.LENGTH_SHORT).show();
+
 
         }
 

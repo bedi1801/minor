@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,6 +60,7 @@ public class MyDetails extends AppCompatActivity {
         name = (TextView) findViewById(R.id.name);
         ema = (TextView) findViewById(R.id.email);
 
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Log.d("name", userid2);
 
@@ -67,7 +69,21 @@ public class MyDetails extends AppCompatActivity {
 
 
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                //this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     public class Details extends AsyncTask<String,String,String>
     {
         String z = "";

@@ -7,8 +7,10 @@
         android:title="News Feed" />
     <item android:id="@+id/option3"
         android:title="League Table" />
+    <item android:id="@+id/option6"
+        android:title="Fixtures"/>
     <item android:id="@+id/option4"
-        android:title="Chech Rules" />
+        android:title="Check Rules" />
     <item android:id="@+id/option5"
         android:title="About Us" />
 </menu>

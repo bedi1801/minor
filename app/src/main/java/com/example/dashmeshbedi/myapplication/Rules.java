@@ -26,16 +26,31 @@ public class Rules extends AppCompatActivity {
         //getActionBar().setDisplayHomeAsUpEnabled(true);
         //ActionBar actionBar = getActionBar();
         // actionBar.setDisplayHomeAsUpEnabled(true);
+        getCallingActivity();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
     @Override
     public boolean onSupportNavigateUp(){
         finish();
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                //this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

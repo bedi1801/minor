@@ -1,6 +1,5 @@
 package com.example.dashmeshbedi.myapplication;
 
-import android.app.DownloadManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,35 +23,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Table extends AppCompatActivity {
+public class Fixtures extends AppCompatActivity {
 
-
-    Button btnJSONRequest;
-   // TextView tvResult;
-    //String url="http://api.football-data.org/alpha/soccerseasons/398/teams";
-    String url="http://api.football-data.org/alpha/soccerseasons/398/leagueTable";
+    //Button btnJSONRequest;
+    TextView tvResult;
     ListView list;
     ArrayList<HashMap<String, String>> list1 = new ArrayList<HashMap<String, String>>();
+    String url="http://api.football-data.org/alpha/soccerseasons/398/fixtures";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_table);
-
-
-     //   tvResult = (TextView)findViewById(R.id.tvResult);
-
-
-
+        setContentView(R.layout.activity_fixtures);
+      //  list1 = new ArrayList<HashMap<String, String>>();
+        //tvResult = (TextView)findViewById(R.id.tvResult);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
@@ -62,7 +49,6 @@ public class Table extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -79,47 +65,47 @@ public class Table extends AppCompatActivity {
 
                 @Override
                 public void onResponse(JSONObject response) {
-       //             tvResult.setText("Response: " + response.toString());
+                    //tvResult.setText("Response: " + response.toString());
                     String textResult = "";
-                    String pos,tname
-                            ,points,win
-                            ,loss
-                            ,draw
-                            ,pgames;
+                    //JSONObject arr2;
+                    String date,matchday,home,hgoals,away,agoals;
                     try {
-                        JSONArray arrProducts = response.getJSONArray("standing");
+                        JSONArray arrProducts = response.getJSONArray("fixtures");
                         for(int i=0; i<arrProducts.length(); i++){
                             JSONObject productItem = (JSONObject)arrProducts.get(i);
-                            pos= productItem.getString("position") + " ";
-                            tname=  productItem.getString("teamName") + " ";
-                            points ="Points:" +  productItem.getString("points") + "\n";
-                            pgames= "Games Played:" + productItem.getString("playedGames") + " ";
-                            win="Wins:" + productItem.getString("wins") + " ";
-                            draw="Draws:" + productItem.getString("draws") + " ";
-                            loss="Losses:" + productItem.getString("losses") + " ";
+                            date =" Date : "+  productItem.getString("date") + " ";
+                            matchday ="Matchday : " + productItem.getString("matchday") + " ";
+                            JSONObject productItem2 = productItem.getJSONObject("result");
+                            home =  productItem.getString("homeTeamName") + " ";
+                            hgoals=productItem2.getString("goalsHomeTeam") + " ";
+                            away =  productItem.getString("awayTeamName") + " ";
+                            agoals =productItem2.getString("goalsAwayTeam") + " ";
 
+                            // textResult +=  productItem.getString("result") + "\n";
+                            // arr2 =  productItem.getJSONObject("result") + "\n";
+                           // textResult+=productItem
                             HashMap<String, String> map = new HashMap<String, String>();
 
-                            map.put("position", pos);
-                            map.put("teamName", tname);
-                            map.put("points", points);
-                            map.put("playedGames", pgames);
-                            map.put("wins", win);
-                            map.put("draws", draw);
-                            map.put("losses", loss);
-
+                            map.put("date", date);
+                            map.put("matchday", matchday);
+                            map.put("homeTeamName", home);
+                            map.put("goalsHomeTeam", hgoals);
+                            map.put("awayTeamName", away);
+                            map.put("goalsAwayTeam", agoals);
 
                             list1.add(map);
-                            list = (ListView) findViewById(R.id.list4);
+                            list = (ListView) findViewById(R.id.list3);
 
-                            ListAdapter adapter = new SimpleAdapter(Table.this, list1,
-                                    R.layout.listview4,
-                                    new String[]{"position","teamName","points","playedGames","wins","draws","losses"},
-                                    new int[]{R.id.po, R.id.tn, R.id.pt,R.id.pg,R.id.wi,R.id.dr,R.id.lo});
+                            ListAdapter adapter = new SimpleAdapter(Fixtures.this, list1,
+                                    R.layout.listview3,
+                                    new String[]{"date","matchday","homeTeamName","goalsHomeTeam","awayTeamName","goalsAwayTeam"},
+                                    new int[]{R.id.dt, R.id.md, R.id.ht,R.id.hg,R.id.at,R.id.ag});
 
-                            list.setAdapter(adapter);
+                           list.setAdapter(adapter);
+
+
                         }
-                      //  tvResult.setText(textResult);
+                        //tvResult.setText(textResult);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -129,9 +115,10 @@ public class Table extends AppCompatActivity {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    if(error != null) Log.e("MainActi", error.getMessage());
+                    if(error != null) Log.e("Fixtures", error.getMessage());
 
                 }
             });
+
 
 }

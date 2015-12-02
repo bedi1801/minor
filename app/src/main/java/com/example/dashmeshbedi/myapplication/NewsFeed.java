@@ -2,6 +2,8 @@ package com.example.dashmeshbedi.myapplication;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -38,6 +41,21 @@ public class NewsFeed extends AppCompatActivity {
         Log.d("ITCRssReader", Thread.currentThread().getName());
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                //this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     private class GetRSSDataTask extends AsyncTask<String, Void, List<RssItem>> {
         @Override
         protected List<RssItem> doInBackground(String... urls) {
