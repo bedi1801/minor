@@ -36,4 +36,5 @@
     <string name="title_activity_players">Players</string>
     <string name="title_activity_table">Table</string>
     <string name="title_activity_fixtures">Fixtures</string>
+    <string name="title_activity_dream_team">DreamTeam</string>
 </resources>

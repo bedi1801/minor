@@ -43,6 +43,8 @@ public class Table extends AppCompatActivity {
     String url="http://api.football-data.org/alpha/soccerseasons/398/leagueTable";
     ListView list;
     ArrayList<HashMap<String, String>> list1 = new ArrayList<HashMap<String, String>>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,7 @@ public class Table extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     final JsonObjectRequest jsObjRequest = new JsonObjectRequest
             (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 

@@ -92,7 +92,7 @@ public class Allteams extends AppCompatActivity {
                   Toast.makeText(Allteams.this, "You Clicked at " + list1.get(+position).get("name"), Toast.LENGTH_SHORT).show();
                     //Log.isLoggable("on click", position);
                         Log.d("asd","as" + position);
-String url;
+                String url;
                   switch(position)
                   {
                      case 0:url="http://api.football-data.org/alpha/teams/66/players";
@@ -259,6 +259,7 @@ String url;
       }
 
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -275,7 +276,6 @@ String url;
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
 /*
     private class JSONParse extends AsyncTask<String, String, JSONObject> {

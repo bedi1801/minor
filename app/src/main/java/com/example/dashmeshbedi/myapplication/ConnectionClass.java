@@ -35,6 +35,7 @@ import java.sql.DriverManager;
             } catch (Exception e) {
                 Log.e("ERRO", e.getMessage());
             }
+            Log.d("TAG", "CONN: ");
             return conn;
         }
     }

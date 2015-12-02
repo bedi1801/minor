@@ -43,9 +43,9 @@ import android.widget.Toast;
 public class MyDetails extends AppCompatActivity {
     public String userid2;
     String email1,name1,dob1,mobile1,ques1,ans1,dream1,coins1,lock1,ponitsweek1,pointslead1;
-    private ListView listView;
+    //private ListView listView;
     ConnectionClass connectionClass;
-    private TextView name , ema;
+    TextView name , ema,mob,ques,dob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +53,19 @@ public class MyDetails extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         userid2 = extras.getString("Name");
         setContentView(R.layout.activity_my_details);
-        listView = (ListView) findViewById(R.id.listView1);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        connectionClass = new ConnectionClass();
-        name = (TextView) findViewById(R.id.name);
-        ema = (TextView) findViewById(R.id.email);
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        connectionClass = new ConnectionClass();
+
+        ema = (TextView) findViewById(R.id.email);
+        name = (TextView) findViewById(R.id.name);
+        mob = (TextView) findViewById(R.id.mobile);
+        ques = (TextView) findViewById(R.id.ques);
+        dob= (TextView) findViewById(R.id.dob);
+
+
         Log.d("name", userid2);
 
         Details details = new Details();
@@ -100,9 +104,14 @@ public class MyDetails extends AppCompatActivity {
             if(isSuccess) {
 
                 Log.d("on post execute email", email1);
-               // TextView ema = (TextView) findViewById(R.id.email);
-               // ema.setText(email1);
-            finish();
+                ema.setText(email1);
+                name.setText(name1);
+                mob.setText(mobile1);
+                dob.setText(dob1);
+                ques.setText(ques1);
+
+
+            //finish();
             }
         }
         @Override
@@ -129,8 +138,10 @@ public class MyDetails extends AppCompatActivity {
                             pointslead1 = rs.getString("Points_LeaderBoard");
                             lock1 = rs.getString("Lock_Status");
                             coins1 = rs.getString("Coins");
+
                             Log.d("email1",email1);
                             Log.d("Coins",coins1);
+
                             isSuccess = true;
                         }
 

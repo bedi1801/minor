@@ -1,5 +1,6 @@
 package com.example.dashmeshbedi.myapplication;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -57,6 +58,19 @@ public class NewsFeed extends AppCompatActivity {
         }
     }
     private class GetRSSDataTask extends AsyncTask<String, Void, List<RssItem>> {
+
+        @Override
+        protected void onPreExecute() {
+
+            ProgressDialog pDialog;
+            pDialog = new ProgressDialog(NewsFeed.this);
+            pDialog.setMessage("Getting Data ...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+
+        }
+
         @Override
         protected List<RssItem> doInBackground(String... urls) {
 

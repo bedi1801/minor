@@ -38,6 +38,7 @@ public class Players extends AppCompatActivity {
     Button Btngetdata;
     ArrayList<HashMap<String, String>> list1 = new ArrayList<HashMap<String, String>>();
     String url;
+    String dreamteamid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,8 +150,10 @@ public class Players extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view,
                                                 int position, long id) {
-                            Toast.makeText(Players.this, "You Clicked at " + list1.get(+position).get("name"), Toast.LENGTH_SHORT).show();
 
+                            Toast.makeText(Players.this, "You Clicked at " + list1.get(+position).get("id"), Toast.LENGTH_SHORT).show();
+                            //dreamteamid+=list1.get(+position).get("id")+ "_";
+                            //Log.d("dreamteamid", dreamteamid);
                         }
                     });
                     //Storing  JSON item in a Variable
@@ -168,8 +171,9 @@ public class Players extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
+    //        Log.d("dreamteamid", dreamteamid);
 
         }
+
     }
 }

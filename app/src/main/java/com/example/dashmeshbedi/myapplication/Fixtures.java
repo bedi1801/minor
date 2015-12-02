@@ -85,23 +85,31 @@ public class Fixtures extends AppCompatActivity {
                             // arr2 =  productItem.getJSONObject("result") + "\n";
                            // textResult+=productItem
                             HashMap<String, String> map = new HashMap<String, String>();
+                            //int mday;
+                            ///mday = Integer.parseInt(matchday);
 
-                            map.put("date", date);
-                            map.put("matchday", matchday);
-                            map.put("homeTeamName", home);
-                            map.put("goalsHomeTeam", hgoals);
-                            map.put("awayTeamName", away);
-                            map.put("goalsAwayTeam", agoals);
+                                map.put("date", date);
+                                map.put("matchday", matchday);
+                                map.put("homeTeamName", home);
+                                map.put("goalsHomeTeam", hgoals);
+                                map.put("awayTeamName", away);
+                                map.put("goalsAwayTeam", agoals);
 
-                            list1.add(map);
-                            list = (ListView) findViewById(R.id.list3);
+                                list1.add(map);
+                                list = (ListView) findViewById(R.id.list3);
 
-                            ListAdapter adapter = new SimpleAdapter(Fixtures.this, list1,
-                                    R.layout.listview3,
-                                    new String[]{"date","matchday","homeTeamName","goalsHomeTeam","awayTeamName","goalsAwayTeam"},
-                                    new int[]{R.id.dt, R.id.md, R.id.ht,R.id.hg,R.id.at,R.id.ag});
+                                ListAdapter adapter = new SimpleAdapter(Fixtures.this, list1,
+                                        R.layout.listview3,
+                                        new String[]{"date", "matchday", "homeTeamName", "goalsHomeTeam", "awayTeamName", "goalsAwayTeam"},
+                                        new int[]{R.id.dt, R.id.md, R.id.ht, R.id.hg, R.id.at, R.id.ag});
 
-                           list.setAdapter(adapter);
+                                list.setAdapter(adapter);
+
+
+
+
+                               // continue;
+
 
 
                         }

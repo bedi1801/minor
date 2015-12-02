@@ -1,5 +1,6 @@
 package com.example.dashmeshbedi.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +18,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 
 /**
  * used for signup button on login page
@@ -24,80 +33,142 @@ import android.widget.TextView;
  */
 public class ThirdMain extends AppCompatActivity {
 
-    private UserRegisterTask obj = null;
+   // private UserRegisterTask obj = null;
 
-    private static TextView name;
-    private static TextView email;
-    private static TextView password;
+    TextView name;
+    TextView email;
+    TextView password;
+    TextView dob;
+    TextView mobile;
+    TextView ques;
+    TextView ans;
+    ConnectionClass connectionClass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_third);
+        connectionClass = new ConnectionClass();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        name = (EditText) findViewById(R.id.editText);
-        final String namee = name.getText().toString();
-        email = (EditText) findViewById(R.id.editText2);
-        final String emaill = email.getText().toString();
-        password = (EditText) findViewById(R.id.editText3);
-        final String passwordd = password.getText().toString();
+        name = (EditText) findViewById(R.id.name);
+
+        email = (EditText) findViewById(R.id.email);
+
+        password = (EditText) findViewById(R.id.password);
+
+        dob = (EditText) findViewById(R.id.dob);
+
+        mobile = (EditText) findViewById(R.id.mobile);
+
+        ques = (EditText) findViewById(R.id.ques);
+
+        ans = (EditText) findViewById(R.id.ans);
+
         Button RegisterButton = (Button) findViewById(R.id.button2);
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //Log.d("hello","sankalp");
 
                 //attemptSignup();
-                // Intent myIntent3 = new Intent(ThirdMain.this, ThirdMain.class);
-                // LoginActivity.this.startActivity(myIntent3);
+                 Intent myIntent3 = new Intent(ThirdMain.this, LoginActivity.class);
+                 startActivity(myIntent3);
                 //finish();
 
-                obj = new UserRegisterTask(namee, emaill, passwordd);
-                obj.execute((Void) null);
+               // obj = new UserRegisterTask(namee, emaill, passwordd,mobilee,quess,anss,dobb);
+                UserRegisterTask obj = new UserRegisterTask();
+                obj.execute("");
+
             }
 
         });
 
     }
 
-    public class UserRegisterTask extends AsyncTask<Void, Void, Boolean> {
-        private final String nName;
-        private final String nEmail;
-        private final String nPassword;
+    class UserRegisterTask extends AsyncTask<String, String, String> {
 
-        UserRegisterTask(String name, String email, String password) {
-            nName = name;
-            nEmail = email;
-            nPassword = password;
+        Boolean isSuccess = false;
+        String z = "";
+
+        String namee = name.getText().toString();
+         String emaill = email.getText().toString();
+         String passwordd = password.getText().toString();
+         String dobb = dob.getText().toString();
+         String mobilee = mobile.getText().toString();
+         String quess = ques.getText().toString();
+         String anss = ans.getText().toString();
+
+      /*  UserRegisterTask() {
+
+            Log.d("Name", namee);
+
             Log.d("IN constructor", "BEDI");
         }
+*/
+
+        Connection con = connectionClass.CONN();
+
 
         @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-            Log.d("Background", "task");
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-            // TODO: register the new account here.
-            return true;
+        protected void onPreExecute() {
+            ProgressDialog pDialog;
+            pDialog = new ProgressDialog(ThirdMain.this);
+            pDialog.setMessage("Going to Login Page  ...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        Log.d("ad","asd");
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected String doInBackground(String... params) {
 
-            if (true) {
-
-               // finish();
-                Intent myIntent3 = new Intent(ThirdMain.this, MainActivity.class);
-                ThirdMain.this.startActivity(myIntent3);
-            finish();
+            if (namee.trim().equals("") || passwordd.trim().equals("") || emaill.trim().equals("") || dobb.trim().equals("") || quess.trim().equals("") || anss.trim().equals("")) {
+            //   z = "Please enter User Id and Password";
+            Log.d("Enter username ","and id ");
             }
+
+            else{
+                try {
+                    Log.d("try", "try");
+
+
+                    if (con == null) {
+                        z = "Error in connection with SQL server";
+                        Log.d("Error connection", z);
+                    } else {
+                        Log.d("TRY", "query not work");
+                        String query = "insert into User_Detail (Email_Id,Name,Password,Mobile_no,Security_question,Security_answer,Date_of_birth) values ('" + emaill + "','" + namee + "','" + passwordd + "','" + mobilee + "','" + quess + "','" + anss + "','" + dobb + "' )";
+                        PreparedStatement preparedStatement = con.prepareStatement(query);
+                        preparedStatement.executeUpdate();
+
+                       // Statement stmt = con.createStatement();
+                       // ResultSet rs = stmt.executeQuery(query);
+
+                        z = "Added Successfully";
+                        isSuccess = true;
+                        Log.d("query true ", "true");
+                    }
+                }
+                catch (Exception ex) {
+                    Log.d("ecevvt", "er");
+                    isSuccess = false;
+                    z = "Exceptions";
+                }
+            }
+            return z;
+            //return true;
+        }
+
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            Log.d("post", z);
         }
 
     }

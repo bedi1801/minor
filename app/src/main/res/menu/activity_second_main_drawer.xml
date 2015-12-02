@@ -6,8 +6,6 @@
             android:title="My Details" />
         <item android:id="@+id/mydreamteam"
             android:title="My Dream Team" />
-        <item android:id="@+id/checkpoint"
-            android:title="Check Your Points" />
         <item android:id="@+id/teams"
             android:title="All Teams" />
         <item android:id="@+id/news"

@@ -93,9 +93,11 @@ public class SecondMain extends AppCompatActivity
 
         } else if (id == R.id.mydreamteam) {
 
-        } else if (id == R.id.checkpoint) {
+            Intent dr=new Intent(SecondMain.this,DreamTeam.class);
+            dr.putExtra("Name",userid1);
+            startActivity(dr);
 
-        }else if (id == R.id.teams) {
+        } else if (id == R.id.teams) {
             startActivity(new Intent(SecondMain.this, Allteams.class));
 
         }

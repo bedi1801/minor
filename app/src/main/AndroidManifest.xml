@@ -40,7 +40,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SecondMain"
-            android:label="SecondMain"
+            android:label="User Profile"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -56,7 +56,7 @@
             android:name=".MyDetails"
             android:label="@string/title_activity_my_details"
             android:parentActivityName=".SecondMain"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.ActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.dashmeshbedi.myapplication.SecondMain" />
@@ -75,17 +75,17 @@
             android:name=".Allteams"
             android:label="@string/title_activity_allteams"
             android:parentActivityName=".SecondMain"
-            android:theme="@style/AppTheme.ActionBar"></activity>
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Players"
             android:label="@string/title_activity_players"
             android:parentActivityName=".Allteams"
-            android:theme="@style/AppTheme.ActionBar"></activity>
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Table"
             android:label="@string/title_activity_table"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.ActionBar"></activity>
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".Fixtures"
             android:label="@string/title_activity_fixtures"
@@ -94,6 +94,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.dashmeshbedi.myapplication.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DreamTeam"
+            android:label="@string/title_activity_dream_team"
+            android:parentActivityName=".SecondMain"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dashmeshbedi.myapplication.SecondMain" />
         </activity>
     </application>
 

@@ -2,6 +2,7 @@ package com.example.dashmeshbedi.myapplication;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import java.sql.Statement;
 public class LoginActivity extends AppCompatActivity {
     ConnectionClass connectionClass;
     EditText edtuserid , edtpass;
-    Button btnlogin ;
+    Button btnlogin, btnsignup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         edtuserid = (EditText) findViewById(R.id.edtuserid);
         edtpass = (EditText) findViewById(R.id.edtpass);
         btnlogin = (Button) findViewById(R.id.btnlogin);
-
+        btnsignup = (Button) findViewById(R.id.btnsignup);
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +35,18 @@ public class LoginActivity extends AppCompatActivity {
                 doLogin.execute("");
             }
         });
+
+        btnsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i= new Intent(LoginActivity.this,ThirdMain.class);
+                startActivity(i);
+
+
+            }
+        });
+
     }
     public class DoLogin extends AsyncTask<String,String,String>
     {
@@ -43,6 +56,13 @@ public class LoginActivity extends AppCompatActivity {
         String password = edtpass.getText().toString();
         @Override
         protected void onPreExecute() {
+
+            ProgressDialog pDialog;
+            pDialog = new ProgressDialog(LoginActivity.this);
+            pDialog.setMessage("Getting Data ...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
 
         }
         @Override
